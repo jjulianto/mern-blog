@@ -6,10 +6,10 @@
     border-radius: 12px;
     font-weight: bold;
     border: none;
+    cursor: pointer;
     color: #fff;
     text-transform: uppercase;
     &:hover {
-        cursor: pointer;
         background-color: #70c73c;
         transition: 250ms;
     }
