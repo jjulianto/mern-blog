@@ -43,6 +43,14 @@ app.post(
     fileFilter: fileFilter,
   }).single("image")
 );
+app.put(
+  "*",
+  multer({
+    storage: fileStorage,
+    fileFilter: fileFilter,
+  }).single("image")
+);
+
 
 app.use("/v1/auth", authRoutes);
 app.use("/v1/blog", blogRoutes);
@@ -52,7 +60,10 @@ app.use((error, req, res, next) => {
   const message = error.message;
   const data = error.data;
 
-  res.status(status).json({ message: message, data: data });
+  res.status(status).json({
+    message: message,
+    data: data,
+  });
 });
 
 const connection_string = process.env.CONNECTION_STRING;
