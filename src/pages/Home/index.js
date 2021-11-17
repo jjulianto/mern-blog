@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setDataBlog } from "../../config/redux/action";
 import { Button, BlogItem, Gap } from "../../components";
 import "./home.scss";
-import { useHistory } from "react-router-dom";
 
 const Home = () => {
+  const { dataBlog } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setDataBlog());
+  }, [dispatch]);
   const history = useHistory();
   return (
     <div className="home-page-wrapper">
@@ -15,12 +22,16 @@ const Home = () => {
       </div>
       <Gap height={20} />
       <div className="content-wrapper">
-        <BlogItem />
-        <BlogItem />
-        <BlogItem />
-        <BlogItem />
-        <BlogItem />
-        <BlogItem />
+        {dataBlog.map((blog) => (
+          <BlogItem
+            key={blog._id}
+            image={`http://localhost:8000/${blog.image}`}
+            title={blog.title}
+            body={blog.body}
+            name={blog.author.name}
+            date={blog.createdAt}
+          />
+        ))}
       </div>
       <div className="pagination">
         <Button title="&#8592; previous" />

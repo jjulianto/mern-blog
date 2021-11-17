@@ -4,7 +4,7 @@ import "./footer.scss";
 const Footer = () => {
   return (
     <div className="footer">
-      <p class="copyright">
+      <p className="copyright">
         Copyright &#169; 2021 MERN-Blog | All right reserved
       </p>
     </div>
