@@ -1,11 +1,18 @@
 import axios from "axios";
 
-export const setDataBlog = () => (dispatch) => {
+export const setDataBlog = (page) => (dispatch) => {
   axios
-    .get("http://localhost:8000/v1/blog/posts")
+    .get(`http://localhost:8000/v1/blog/posts?page=${page}&perPage=3`)
     .then((result) => {
       const responseAPI = result.data;
       dispatch({ type: "UPDATE_DATA_BLOG", payload: responseAPI.data });
+      dispatch({
+        type: "UPDATE_PAGE",
+        payload: {
+          currentPage: responseAPI.current_page,
+          totalPage: responseAPI.total_data / responseAPI.per_page,
+        },
+      });
     })
     .catch((err) => {
       console.log(err);

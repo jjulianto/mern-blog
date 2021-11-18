@@ -13,7 +13,7 @@ const BlogItem = ({ title, image, body, name, date }) => {
         <p className="author">
           {name} - {date}
         </p>
-        <p className="body">{body}</p>
+        <p className="body">{body.substr(0, 170)}....</p>
         <Gap height={20} />
         <Button
           title="view detail"

@@ -1,5 +1,9 @@
 const initialState = {
   dataBlog: [],
+  page: {
+    currentPage: 1,
+    totalPage: 1,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -8,6 +12,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dataBlog: action.payload,
+      };
+    case "UPDATE_PAGE":
+      return {
+        ...state,
+        page: action.payload,
       };
     default:
       return state;
