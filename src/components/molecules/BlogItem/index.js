@@ -3,7 +3,7 @@ import "./blogItem.scss";
 import { useHistory } from "react-router-dom";
 import { Button, Gap } from "../../atoms";
 
-const BlogItem = ({ title, image, body, name, date }) => {
+const BlogItem = ({ title, image, body, name, date, _id }) => {
   const history = useHistory();
   return (
     <div className="blog-item">
@@ -17,7 +17,7 @@ const BlogItem = ({ title, image, body, name, date }) => {
         <Gap height={20} />
         <Button
           title="view detail"
-          onClick={() => history.push("/detail-blog")}
+          onClick={() => history.push(`/detail-blog/${_id}`)}
         />
       </div>
     </div>
