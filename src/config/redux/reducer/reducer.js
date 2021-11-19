@@ -1,26 +1,7 @@
-const initialState = {
-  dataBlog: [],
-  page: {
-    currentPage: 1,
-    totalPage: 1,
-  },
-};
+import { combineReducers } from "redux";
+import homeReducer from "./homeReducer";
+import createBlogReducer from "./createBlogReducer";
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "UPDATE_DATA_BLOG":
-      return {
-        ...state,
-        dataBlog: action.payload,
-      };
-    case "UPDATE_PAGE":
-      return {
-        ...state,
-        page: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const reducer = combineReducers({ homeReducer, createBlogReducer });
 
 export default reducer;

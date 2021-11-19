@@ -7,7 +7,7 @@ import "./home.scss";
 
 const Home = () => {
   const [counter, setCounter] = useState(1);
-  const { dataBlog, page } = useSelector((state) => state);
+  const { dataBlog, page } = useSelector((state) => state.homeReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

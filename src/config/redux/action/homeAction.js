@@ -10,7 +10,7 @@ export const setDataBlog = (page) => (dispatch) => {
         type: "UPDATE_PAGE",
         payload: {
           currentPage: responseAPI.current_page,
-          totalPage: responseAPI.total_data / responseAPI.per_page,
+          totalPage: Math.ceil(responseAPI.total_data / responseAPI.per_page),
         },
       });
     })
