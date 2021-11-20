@@ -3,7 +3,7 @@ import "./blogItem.scss";
 import { useHistory } from "react-router-dom";
 import { Button, Gap } from "../../atoms";
 
-const BlogItem = ({ title, image, body, name, date, _id }) => {
+const BlogItem = ({ title, image, body, name, date, _id, onDelete }) => {
   const history = useHistory();
   return (
     <div className="blog-item">
@@ -18,7 +18,10 @@ const BlogItem = ({ title, image, body, name, date, _id }) => {
             >
               Edit
             </p>{" "}
-            | <p className="delete">Delete</p>
+            |{" "}
+            <p className="delete" onClick={() => onDelete(_id)}>
+              Delete
+            </p>
           </div>
         </div>
         <p className="author">

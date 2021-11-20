@@ -43,8 +43,10 @@ const CreateBlog = (props) => {
     const id = props.match.params.id;
     if (isUpdate) {
       updateToAPI(form, id);
+      history.push("/");
     } else {
       postToAPI(form);
+      history.push("/");
     }
   };
 

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 import { useSelector, useDispatch } from "react-redux";
 import { setDataBlog } from "../../config/redux/action";
 import { Button, BlogItem, Gap } from "../../components";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./home.scss";
 
 const Home = () => {
@@ -23,6 +26,33 @@ const Home = () => {
   const next = () => {
     setCounter(counter === page.totalPage ? page.totalPage : counter + 1);
   };
+
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure to delete this post?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            axios
+              .delete(`http://localhost:8000/v1/blog/post/${id}`)
+              .then((result) => {
+                console.log(result);
+                dispatch(setDataBlog(counter));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => console.log("user do not delete this post"),
+        },
+      ],
+    });
+  };
   return (
     <div className="home-page-wrapper">
       <div className="create-wrapper">
@@ -42,6 +72,7 @@ const Home = () => {
             name={blog.author.name}
             date={blog.createdAt}
             _id={blog._id}
+            onDelete={confirmDelete}
           />
         ))}
       </div>
