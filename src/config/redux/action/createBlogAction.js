@@ -27,3 +27,23 @@ export const postToAPI = (form) => {
       console.log(err);
     });
 };
+
+export const updateToAPI = (form, id) => {
+  const data = new FormData();
+  data.append("title", form.title);
+  data.append("image", form.image);
+  data.append("body", form.body);
+
+  axios
+    .put(`http://localhost:8000/v1/blog/post/${id}`, data, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
