@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
+import { detailDataBlog } from "../../config/redux/action/detailBlogAction";
 import { Link } from "../../components";
 import "./detailBlog.scss";
 
 const DetailBlog = (props) => {
-  const [data, setData] = useState({});
+  const { data } = useSelector((state) => state.detailBlogReducer);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
     const id = props.match.params.id;
-    axios
-      .get(`http://localhost:8000/v1/blog/post/${id}`)
-      .then((result) => {
-        const responseAPI = result.data;
-        setData(responseAPI.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [props]);
-  const history = useHistory();
+    dispatch(detailDataBlog(id));
+  }, [props, dispatch]);
   if (data.author) {
     return (
       <div className="detail-blog-wrapper">

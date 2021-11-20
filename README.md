@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+For the API source code can be seen in the 'backend' branch.
+
 ## Available Scripts
 
 In the project directory, you can run:
