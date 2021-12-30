@@ -9,7 +9,6 @@ require("dotenv").config();
 
 const app = express();
 
-const authRoutes = require("./src/routes/auth");
 const blogRoutes = require("./src/routes/blog");
 
 const fileStorage = multer.diskStorage({
@@ -51,8 +50,6 @@ app.put(
   }).single("image")
 );
 
-
-app.use("/v1/auth", authRoutes);
 app.use("/v1/blog", blogRoutes);
 
 app.use((error, req, res, next) => {
